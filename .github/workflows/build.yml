@@ -17,7 +17,7 @@ jobs:
       - uses: eessi/github-action-eessi@v3
       - name: Test EESSI
         run: |
-          module load openmpi
+          module load CMake openmpi buildenv
           mkdir build
           cd build
           CC=mpicc CXX=mpicxx cmake ..
