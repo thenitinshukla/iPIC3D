@@ -1,3 +1,9 @@
+name: EESSI Test
+
+on:
+  push:
+  pull_request:
+
 jobs:
   ubuntu-minimal:
     runs-on: ${{ matrix.os }}
@@ -7,13 +13,14 @@ jobs:
           - ubuntu-24.04-arm
           - ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
-    - uses: eessi/github-action-eessi@v3
-    - name: Test EESSI
-      run: |
-        module load openmpi
-        mkdir build
-        cd build
-        CC=mpicc CXX=mpicxx cmake ..
-        make
-      shell: bash
+      - uses: actions/checkout@v4
+      - uses: eessi/github-action-eessi@v3
+      - name: Test EESSI
+        run: |
+          module load openmpi
+          mkdir build
+          cd build
+          CC=mpicc CXX=mpicxx cmake ..
+          make
+        shell: bash
+
